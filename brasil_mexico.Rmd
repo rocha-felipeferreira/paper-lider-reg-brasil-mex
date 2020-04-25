@@ -1,0 +1,98 @@
+---
+title: "Artigo | Brasil e México"
+author: "Felipe Rocha"
+output: html_document
+---
+
+# Informação
+
+Aqui, encontram-se reunidas todas as informações, comandos computacionais e decisões tomadas para chegar aos resultados apresentados no artigo. Em caso de dúvidas e de sugestões, favor, entrar em contato com: rocha.felipeferreira@gmail.com
+
+# Pacotes
+
+```{r pacotes}
+
+require(tidyverse)
+require(ggthemes)
+```
+
+# Opinião sobre o Brasil 
+
+```{r opinião brasil}
+
+latinobarometro_2013_relacao_brasil <- read_csv("bd_reformatado/latinobarometro_2013_relacao_brasil.csv")
+
+latinobarometro_2013_relacao_brasil$visão <- ifelse(latinobarometro_2013_relacao_brasil$opiniao == "Muito Boa" | latinobarometro_2013_relacao_brasil$opiniao == "Boa", "Opinião Positiva", ifelse(latinobarometro_2013_relacao_brasil$opiniao == "Muito Ruim" | latinobarometro_2013_relacao_brasil$opiniao == "Ruim", "Opinião Negativa", ifelse(latinobarometro_2013_relacao_brasil$opiniao == "Sem Resposta" | latinobarometro_2013_relacao_brasil$opiniao == "Não Sabe", "Opinião Neutra", "não se aplica")))
+
+latinobarometro_2013_relacao_brasil$opiniao <- NULL
+
+latinobarometro_2013_relacao_brasil <-latinobarometro_2013_relacao_brasil %>% group_by(pais, visão) %>% summarise(percentual = sum(percentual))
+
+ggplot(latinobarometro_2013_relacao_brasil, aes(x=pais, y=percentual, fill = visão)) + geom_col(position = "fill") + coord_flip() + scale_y_continuous(labels=scales::percent) + scale_x_discrete(labels = c("Brasil", "México")) + theme_wsj(color = "white") + guides(fill=guide_legend(title=NULL)) + theme(legend.text = element_text(size = rel(1))) + scale_fill_manual(values = c("tomato1", "grey76", "darkslategray4"))
+
+```
+
+# Opinião sobre o México
+
+```{r opinião sobre o México}
+
+latinobarometro_2013_relacao_mexico <- read_csv("bd_reformatado/latinobarometro_2013_relacao_mexico.csv")
+
+latinobarometro_2013_relacao_mexico$visão <- ifelse(latinobarometro_2013_relacao_mexico$opiniao == "Muito Boa" | latinobarometro_2013_relacao_mexico$opiniao == "Boa", "Opinião Positiva", ifelse(latinobarometro_2013_relacao_mexico$opiniao == "Muito Ruim" | latinobarometro_2013_relacao_mexico$opiniao == "Ruim", "Opinião Negativa", ifelse(latinobarometro_2013_relacao_mexico$opiniao == "Sem Resposta" | latinobarometro_2013_relacao_mexico$opiniao == "Não Sabe", "Opinião Neutra", "não se aplica")))
+
+latinobarometro_2013_relacao_mexico$opiniao <- NULL
+
+latinobarometro_2013_relacao_mexico <-latinobarometro_2013_relacao_mexico %>% group_by(pais, visão) %>% summarise(percentual = sum(percentual))
+
+ggplot(latinobarometro_2013_relacao_mexico, aes(x=pais, y=percentual, fill = visão)) + geom_col(position = "fill") + coord_flip() + scale_y_continuous(labels=scales::percent) + scale_x_discrete(labels = c("Brasil", "México")) + theme_wsj(color = "white") + guides(fill=guide_legend(title=NULL)) + theme(legend.text = element_text(size = rel(1))) + scale_fill_manual(values = c("tomato1", "grey76", "darkslategray4"))
+
+
+```
+
+
+# Países líderes
+
+
+```{r pais lider}
+
+latinobarometro_2015_pais_al_mais_lideranca <- read_csv("bd_reformatado/latinobarometro_2015_pais_al_mais_lideranca.csv")
+
+latinobarometro_2015_pais_al_mais_lideranca<-latinobarometro_2015_pais_al_mais_lideranca[-24,]
+paises_lideram <- gather(latinobarometro_2015_pais_al_mais_lideranca, key = "local_resposta", value = "valor", -pais)
+
+nomes_paises <- c("Brazil" = "Brasil", "Mexico" = "México")
+
+ggplot(paises_lideram, aes(reorder(x=pais, valor), y=valor)) +
+  geom_point() + coord_flip() + facet_wrap(~local_resposta, labeller = as_labeller(nomes_paises)) + 
+  theme(axis.title = element_blank(), 
+        axis.text = element_text(size = rel(1.3), colour = "black"),
+        strip.text = element_text(size = rel(1.2), colour = "black"),
+        panel.background = element_rect(colour = "black", fill = "white"),
+        strip.background = element_rect(colour = "black", fill = "white"), 
+        plot.title = element_text(size = rel(1.3)), 
+        plot.background = element_rect(colour = "black", 
+                                       size = 1, fill = "white")) + 
+  geom_segment(aes(xend = pais), yend = 0) 
+
+```
+
+
+# Capacidade de o Brasil lidar com problemas regionais
+
+
+```{r brasil lidar regionalmente}
+
+latinobarometro_2015_capacidade_brasil_lidar_problemas_al <- read_csv("bd_reformatado/latinobarometro_2015_capacidade_brasil_lidar_problemas_al.csv")
+
+latinobarometro_2015_capacidade_brasil_lidar_problemas_al$resposta <- factor(latinobarometro_2015_capacidade_brasil_lidar_problemas_al$resposta, levels = c("Sem Resposta", "Não Sabe", "Nenhuma", "Pouca", "Alguma", "Muita"), labels = c("Sem Resposta", "Não Sabe", "Nenhuma", "Pouca", "Alguma", "Muita") ,ordered = TRUE)
+
+latinobarometro_2015_capacidade_brasil_lidar_problemas_al<- gather(latinobarometro_2015_capacidade_brasil_lidar_problemas_al, key =  "pais", value = "percentual", -resposta)
+
+
+ggplot(latinobarometro_2015_capacidade_brasil_lidar_problemas_al, aes(x= reorder(resposta, percentual), y=percentual, fill = pais)) + geom_bar(stat = "identity") + coord_flip() + theme_hc(style  = "default") + theme(axis.title.x = element_blank(), axis.title.y = element_blank(), axis.text = element_text(size = rel(1.1), colour = "black")) + guides(fill = guide_legend(title = NULL)) + scale_fill_economist(labels = c("Brasil", "México")) 
+```
+
+
+
+
+
