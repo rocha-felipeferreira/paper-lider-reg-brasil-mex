@@ -2,7 +2,7 @@
 
 Here you can find all the necessary files in order to reproduce and replicate the following paper (whose language is in Portuguese): "O exercício da liderança regional: um balanço preliminar a partir das opiniões de brasileiros e mexicanos"
 
-## Link: https://doi.org/10.22456/2178-8839.83922)
+## Link: https://doi.org/10.22456/2178-8839.83922
 
 ## ABSTRACT
 According to economic and political arguments, relations between Brazil and Mexico have historically
