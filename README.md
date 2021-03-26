@@ -1,5 +1,5 @@
 ## O Exercício da Liderança Regional: Um Balanço Preliminar a partir das Opiniões de Brasileiros e Mexicanos 
-**The exercise of regional leadership: a preliminary assessment using brazilian and mexican opinions**
+**The exercise of regional leadership: a preliminary assessment using Brazilian and Mexican opinions**
 
 **By: Felipe Rocha**
 
