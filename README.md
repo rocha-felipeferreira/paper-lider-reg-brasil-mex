@@ -1,5 +1,6 @@
 ## O Exercício da Liderança Regional: Um Balanço Preliminar a partir das Opiniões de Brasileiros e Mexicanos 
-**(English title: The exercise of regional leadership: a preliminary assessment using brazilian and mexican opinions)**
+**(English title) The exercise of regional leadership: a preliminary assessment using brazilian and mexican opinions)**
+
 **By: Felipe Rocha**
 
 📚 [Click to read the paper](https://doi.org/10.22456/2178-8839.83922)
