@@ -13,4 +13,18 @@ the exercise of regional leadership. Second, to explore data from Latinobarómet
 and thus outline preliminary hypotheses to be tested on future works.
 Key-words: relations Brazil-Mexico; regionalism; public opinion.
 
+### Datasource
+- [Latinobarometro](http://www.latinobarometro.org/latOnline.jsp)
+
+### Tools & Techniques
+- Survey Analysis
+- Statistics
+- R
+
+### Visual Gallery (Sample)
+
+Perceptions from Brazil             |  Can Brazil deal with Latin American Issues?
+:-------------------------:|:-------------------------:
+![](https://user-images.githubusercontent.com/34004529/112667310-e0c2a780-8e3b-11eb-9076-734b2ecb025b.png)  |  ![](https://user-images.githubusercontent.com/34004529/112486321-87cf1280-8d5a-11eb-8897-8455d0fad8fc.jpg)
+
 
