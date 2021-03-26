@@ -5,7 +5,7 @@
 
 📚 [Click to read the paper](https://doi.org/10.22456/2178-8839.83922)
 
-### ABSTRACT
+### Abstract
 According to economic and political arguments, relations between Brazil and Mexico have historically
 oscillated between agreements and disagreements. In this context, the paper aims to fulfill two objectives.
 First, to summarize and describe some arguments of the literature on the interactions of both states regarding
